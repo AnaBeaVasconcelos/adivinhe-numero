@@ -6,21 +6,64 @@
     <title>Adivinhe o Número</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body data-theme="dark">
     <div class="container">
-      <h1>Adivinhe o Número</h1>
+      <!-- INICIO -->
+      <div id="telaInicio" class="tela">
+        <h1>🎮 Bem-vindo</h1>
+        <div class="card-info">
+          <p><strong>🎯 Objetivo:</strong> Descobrir o número secreto</p>
+          <p><strong>❤️ Vidas:</strong> Cada erro perde uma</p>
+          <p><strong>⏱️ Tempo:</strong> Limitado por rodada</p>
+          <p><strong>💡 Dicas:</strong> Quanto mais perto, melhor a dica</p>
+        </div>
 
-      <p>Estou pensando em um número entre 1 e 100... Tente adivinhar!</p>
+        <button onclick="irParaDificuldade()">Começar</button>
+        <button onclick="toggleTheme()">🌗 Tema</button>
+      </div>
 
-      <p id="tentativasRestantes"></p>
+      <!-- DIFICULDADE -->
+      <div id="telaDificuldade" class="tela hidden">
+        <div class="header">
+          <button class="icon-btn" onclick="voltar()">⬅</button>
 
-      <input type="number" id="palpite" placeholder="Digite seu palpite" />
+          <h1>👾 Dificuldade</h1>
+        </div>
+        <button onclick="iniciarJogo('facil')">Fácil</button>
+        <button onclick="iniciarJogo('medio')">Médio</button>
+        <button onclick="iniciarJogo('dificil')">Difícil</button>
+      </div>
 
-      <button id="botao" onclick="verificarPalpite()">Verificar Palpite</button>
+      <!-- JOGO -->
+      <div id="telaJogo" class="tela hidden">
+        <div class="header">
+          <button class="icon-btn" onclick="voltar()">⬅</button>
 
-      <p id="mensagem"></p>
+          <h1>🎯 Adivinhe</h1>
+
+          <button class="icon-btn" onclick="usarDica()">💡</button>
+        </div>
+        <p id="timer"></p>
+        <div class="barra">
+          <div id="progresso"></div>
+        </div>
+        <p id="score"></p>
+
+        <div id="vidas" class="vidas"></div>
+
+        <input id="palpite" type="number" placeholder="Digite..." />
+
+        <button id="botao" onclick="verificarPalpite()">Tentar</button>
+
+        <p id="mensagem"></p>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- AUDIO -->
+    <audio id="somAcerto" src="acerto.mp3"></audio>
+    <audio id="somErro" src="erro.mp3"></audio>
+    <audio id="somGameOver" src="gameover.mp3"></audio>
+
+    <script src="script.js" defer></script>
   </body>
 </html>

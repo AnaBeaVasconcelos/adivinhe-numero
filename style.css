@@ -1,31 +1,233 @@
-body{
-  font-family: Arial;
-  background: #f4f4f4;
+:root {
+  --bg: #0f0f1a;
+  --card: rgba(255, 255, 255, 0.03);
+  --primary: #00f5ff;
+  --secondary: #ff00c8;
+  --text: #ffffff;
+}
+
+[data-theme="light"] {
+  --bg: #f4f4f4;
+  --card: white;
+  --text: black;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 5px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container {
+  background: var(--card);
+  padding: 40px;
+  border-radius: 16px;
+  width: 350px;
   text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#score {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+#timer {
+  font-size: 18px;
+  color: var(--primary);
+}
+
+/* TELAS */
+.tela {
+  transition: all 0.3s ease;
+}
+
+.header {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  grid-template-columns: 40px 1fr 40px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  box-shadow: 0 0 15px var(--primary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+}
+
+.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+  position: absolute;
+}
+
+.card-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+  text-align: left;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* BOTÕES BONITOS */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #ff6b6b;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  box-shadow:
+    0 0 10px var(--primary),
+    0 0 20px var(--secondary);
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--secondary);
+}
+
+button:disabled {
+  background: gray;
+}
+
+.voltar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: auto;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 50%;
+}
+
+/* INPUT */
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
   margin-top: 10px;
 }
 
-.container{
-  background: white;
-  width: 400px;
-  margin: auto;
-  padding: 30px;
+input,
+button {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* VIDAS */
+.vidas {
+  font-size: 26px;
+  margin: 10px 0;
+}
+
+/* ERRO */
+input.erro {
+  border: 2px solid red;
+  animation: shake 0.2s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.barra {
+  height: 8px;
+  background: #333;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px #ccc;
+  margin-bottom: 10px;
+  overflow: hidden;
 }
 
-input{
-  padding: 10px;
-  width: 200px;
-  margin-bottom: 15px;
+#progresso {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 1s linear;
 }
 
-button{
-  padding: 10px 20px;
-  cursor: pointer;
+/* ANIMAÇÃO WIN */
+.win {
+  animation: pulse 0.4s;
 }
 
-#mensagem{
-  margin-top: 20px;
-  font-weight: bold;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* MELHOR TRANSIÇÃO */
+.tela {
+  transition: all 0.4s ease;
+}
+
+/* INPUT FOCO */
+input:focus {
+  outline: 2px solid var(--primary);
 }
