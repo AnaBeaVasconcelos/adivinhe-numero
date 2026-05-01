@@ -10,18 +10,36 @@ function verificarPalpite() {
 
   tentativas++;
 
-  if(tentativas >= limiteTentativas) {
-    mensagem.innerText = `Game Over! O número secreto era ${numeroSecreto}.`;
+  if (palpite == numeroSecreto) {
+    mensagem.innerText = `Parabéns! Você acertou em ${tentativas} tentativas!`;
+
+    setTimeout(() => {
+      reiniciarJogo();
+    }, 2000);
+
     return;
   }
 
-  if (palpite == numeroSecreto) {
-    mensagem.innerText  = `Parabéns! Você acertou o número em ${tentativas} tentativas!`;
+  if (tentativas >= limiteTentativas) {
+    mensagem.innerText = `Game Over! O número era ${numeroSecreto}`;
+
+    setTimeout(() => {
+      reiniciarJogo();
+    }, 2000);
+
+    return;
   }
-  else if (palpite < numeroSecreto) {
-    mensagem.innerText  = "Tente um número maior!";
+
+  if (palpite < numeroSecreto) {
+    mensagem.innerText = "Tente um número maior!";
+  } else {
+    mensagem.innerText = "Tente um número menor!";
   }
-  else {
-    mensagem.innerText  = "Tente um número menor!";
-  }
+}
+
+function reiniciarJogo() {
+  numeroSecreto = Math.floor(Math.random() * 100) + 1;
+  tentativas = 0;
+  document.getElementById("palpite").value = "";
+  document.getElementById("mensagem").innerText = "";
 }
